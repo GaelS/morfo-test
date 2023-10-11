@@ -56,11 +56,11 @@ export const SpeciesForm = ({ defaultValues }: { defaultValues?: Species }) => {
 
   const { isSubmitSuccessful, isSubmitting, errors } = formState;
   if (isSubmitSuccessful) {
-    router.push("/");
     /**
-     * I force a refresh here cause of caching issue
-     * https://github.com/prisma/prisma/issues/20306
+     * Addition of a useless queryparams + refresh to prevent NextJS caching thanks to this thread:
+     * https://stackoverflow.com/questions/72391532/next-js-router-push-not-refreshing-the-page
      */
+    router.push("/?u=true");
     router.refresh();
   }
 
